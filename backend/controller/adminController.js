@@ -2,14 +2,7 @@ import ProductModel from "../model/ProductSchema.js";
 
 const adminController = async(req,res)=>{
     try {
-        const products = await new ProductModel({
-            name : req.body.name,
-            cuisine : req.body.cuisine,
-            rating : req.body.rating,
-            deliveryTime : req.body.deliveryTime,
-            location : req.body.location,
-            image : req.body.image
-        });
+        const products = await new ProductModel(req.body);
 
         const productSaved = await products.save();
         console.log("Products Saved");
