@@ -2,6 +2,7 @@ import express from "express";
 import adminController from "../controller/adminController.js";
 import multer from "multer";
 import path from "path";
+import adminDataController from "../controller/adminDataController.js";
 
 const router = express.Router();
 
@@ -18,5 +19,6 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 router.post("/admin", upload.single('imageOfRes'), adminController);
+router.get("/adminData", adminDataController);
 
 export default router;

@@ -11,24 +11,22 @@ const Body = () => {
   const [search, setSearch] = useState("");
   const [filterRes, setFilterRes] = useState([]);
 
-  // const promotedLabelRestaurant = withPromotedLabel(RestaurentCard);
-
   useEffect(() => {
     fetchData();
   }, []);
 
   const fetchData = async () => {
     const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.763089020178832&lng=77.26507069360963&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      "http://localhost:4000/api/v1/adminData"
     );
     const json = await data.json();
     
-    console.log(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    console.log(json.data);
     setListOfRes(
-      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+      json?.data
     );
     setFilterRes(
-      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+      json?.data
     );
   };
 
@@ -92,8 +90,8 @@ const Body = () => {
       <div className="flex flex-wrap ">
         {filterRes?.map((restaurent) => (
           <Link
-            to={"/restaurant/" + restaurent.info.id}
-            key={restaurent.info.id}
+            to={"/restaurant/" + restaurent.productId}
+            key={restaurent.productId}
           >
             <RestaurentCard resData={restaurent} />
           </Link>

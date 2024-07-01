@@ -1,11 +1,12 @@
 import { IMG_URL } from "../utils/constant";
 
 const RestaurentCard = ({resData})=>{
-    const {cloudinaryImageId,name,cuisines,avgRating,areaName} = resData.info;
-    const {deliveryTime} = resData.info.sla;
+  console.log(resData);
+    const {imageOfRes, name, cuisines, avgRating, areaName, deliveryTime} = resData;
+
     return (
       <div data-testid = "cards" className="m-4 p-4 w-64  bg-zinc-200 rounded-lg ">
-        <img className="rounded-t-md" src={IMG_URL+cloudinaryImageId}/>
+        <img className="rounded-t-md" src={imageOfRes}/>
        <div className="">
         <h3>{name}</h3>
         <h4>{cuisines.join(", ")}</h4>
