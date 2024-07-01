@@ -4,7 +4,7 @@ import cors from "cors";
 import connectDb from "./db/connectDb.js";
 
 const app = express();
-const port = process.env.port || 4000;
+const port = process.env.PORT || 4000;
 
 const corsOptions = {
   origin: 'http://localhost:5000',
@@ -15,7 +15,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.use(express.urlencoded({ extended: false }));
-app.use(express.json()); 
+app.use(express.json());
 
 const DATABASE_URL = process.env.DATABASE_URL || "mongodb://127.0.0.1:27017";
 connectDb(DATABASE_URL);
@@ -23,5 +23,5 @@ connectDb(DATABASE_URL);
 app.use("/api/v1", router);
 
 app.listen(port, () => {
-  console.log(`http://localhost:${port}`);
+  console.log(`Server running at http://localhost:${port}`);
 });

@@ -6,13 +6,13 @@ import path from "path";
 const router = express.Router();
 
 const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, path.join(process.cwd(), "/public/images/productImages"));
-    },
-    filename: function (req, file, cb) {
-      const img_name = Date.now() + '-' + file.originalname;
-      cb(null, img_name);
-    }
+  destination: function (req, file, cb) {
+    cb(null, path.join(process.cwd(), "/public/images/productImages"));
+  },
+  filename: function (req, file, cb) {
+    const img_name = Date.now() + '-' + file.originalname;
+    cb(null, img_name);
+  }
 });
 
 const upload = multer({ storage });

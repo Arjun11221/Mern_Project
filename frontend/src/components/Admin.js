@@ -30,18 +30,18 @@ const Admin = () => {
     e.preventDefault();
     
     // Create FormData object for file upload
-    const formData = new FormData();
-    formData.append('name', formData.name);
-    formData.append('cuisines', formData.cuisines); // Convert cuisines array to string
-    formData.append('rating', formData.rating);
-    formData.append('deliveryTime', formData.deliveryTime);
-    formData.append('location', formData.location);
-    formData.append('image', formData.imageOfRes); // Append the image file
+    const data = new FormData();
+    data.append('name', formData.name);
+    data.append('cuisines', formData.cuisines); // Convert cuisines array to string
+    data.append('rating', formData.rating);
+    data.append('deliveryTime', formData.deliveryTime);
+    data.append('location', formData.location);
+    data.append('imageOfRes', formData.imageOfRes); // Append the image file
   
     try {
       const res = await axios.post(
         "http://localhost:4000/api/v1/admin",
-        formData,
+        data,
         {
           headers: {
             'Content-Type': 'multipart/form-data' // Set content type for FormData
@@ -51,7 +51,7 @@ const Admin = () => {
       console.log(res);
       setFormData({
         name: "",
-        cuisines: [],
+        cuisines: "",
         rating: "",
         deliveryTime: "",
         location: "",
