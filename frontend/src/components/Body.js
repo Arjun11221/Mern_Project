@@ -45,6 +45,7 @@ const Body = () => {
         <input
           type="text"
           data-testid="searchInput"
+          placeholder="Search for food and restaurant"
           className="border border-black rounded-md outline-none w-96 h-10 p-2 "
           value={search}
           onChange={(e) => {
@@ -55,7 +56,7 @@ const Body = () => {
           className=" px-4 py-2 bg-purple-400 rounded-lg   "
           onClick={() => {
             const searchList = listOfRes.filter((res) =>
-              res.info.name.toLowerCase().includes(search.toLowerCase())
+              res?.name.toLowerCase().includes(search.toLowerCase())
             );
             setFilterRes(searchList);
           }}
@@ -70,7 +71,7 @@ const Body = () => {
             className="px-4 py-3 bg-zinc-800 rounded-lg text-white "
             onClick={() => {
               const filterList = listOfRes.filter(
-                (res) => res.info.avgRating > 4
+                (res) => res.rating > 4
               );
               setFilterRes(filterList);
             }}
