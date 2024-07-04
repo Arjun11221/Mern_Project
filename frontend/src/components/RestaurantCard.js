@@ -4,6 +4,7 @@ import { MdLocationOn } from "react-icons/md";
 const baseURL = "http://localhost:5000/images/"; // Replace with your actual base URL
 
 const RestaurentCard = ({ resData }) => {
+  // console.log(resData.rating);
   const { imageOfRes, name, cuisines, rating, location, deliveryTime } = resData;
 
   const imageUrl = baseURL + imageOfRes;

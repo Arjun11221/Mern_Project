@@ -20,8 +20,7 @@ const Body = () => {
       "http://localhost:4000/api/v1/adminData"
     );
     const json = await data.json();
-    
-    console.log(json.data);
+  
     setListOfRes(
       json?.data
     );

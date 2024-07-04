@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { toast } from "react-hot-toast";
 
 const Admin = () => {
   const [formData, setFormData] = useState({
@@ -28,27 +29,28 @@ const Admin = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     // Create FormData object for file upload
     const data = new FormData();
-    data.append('name', formData.name);
-    data.append('cuisines', formData.cuisines); // Convert cuisines array to string
-    data.append('rating', formData.rating);
-    data.append('deliveryTime', formData.deliveryTime);
-    data.append('location', formData.location);
-    data.append('imageOfRes', formData.imageOfRes); // Append the image file
-  
+    data.append("name", formData.name);
+    data.append("cuisines", formData.cuisines); // Convert cuisines array to string
+    data.append("rating", formData.rating);
+    data.append("deliveryTime", formData.deliveryTime);
+    data.append("location", formData.location);
+    data.append("imageOfRes", formData.imageOfRes); // Append the image file
+
     try {
-      const res = await axios.post(
-        "http://localhost:4000/api/v1/admin",
-        data,
-        {
-          headers: {
-            'Content-Type': 'multipart/form-data' // Set content type for FormData
-          }
-        }
-      );
-      console.log(res);
+      const res = await axios.post("http://localhost:4000/api/v1/admin", data, {
+        headers: {
+          "Content-Type": "multipart/form-data", // Set content type for FormData
+        },
+      });
+      if (res.data.success) {
+        toast.success(res.data.message);
+      } else {
+        toast.error(res.data.message);
+      }
+
       setFormData({
         name: "",
         cuisines: "",
@@ -58,10 +60,9 @@ const Admin = () => {
         imageOfRes: null,
       });
     } catch (error) {
-      console.error('Error uploading data:', error);
+      console.error("Error uploading data:", error);
     }
   };
-  
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-300">
@@ -70,10 +71,17 @@ const Admin = () => {
         className="bg-gray-200 mt-10 shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full max-w-lg"
         encType="multipart/form-data"
       >
-        <h2 className="text-2xl font-bold mb-6 text-gray-800">Add a New Restaurant</h2>
+        <h2 className="text-2xl font-bold mb-6 text-gray-800">
+          Add a New Restaurant
+        </h2>
 
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">Name Of Restaurant</label>
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="name"
+          >
+            Name Of Restaurant
+          </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
@@ -85,7 +93,12 @@ const Admin = () => {
         </div>
 
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="cuisines">Cuisines</label>
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="cuisines"
+          >
+            Cuisines
+          </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
@@ -97,7 +110,12 @@ const Admin = () => {
         </div>
 
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="rating">Rating</label>
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="rating"
+          >
+            Rating
+          </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             type="number"
@@ -109,7 +127,12 @@ const Admin = () => {
         </div>
 
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="deliveryTime">Delivery Time</label>
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="deliveryTime"
+          >
+            Delivery Time
+          </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
@@ -121,7 +144,12 @@ const Admin = () => {
         </div>
 
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="location">Location</label>
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="location"
+          >
+            Location
+          </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
@@ -133,7 +161,12 @@ const Admin = () => {
         </div>
 
         <div className="mb-6">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="imageOfRes">Image of Restaurant</label>
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="imageOfRes"
+          >
+            Image of Restaurant
+          </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             type="file"

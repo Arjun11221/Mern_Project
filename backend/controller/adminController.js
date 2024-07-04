@@ -15,11 +15,10 @@ const adminController = async (req, res) => {
 
     // Convert rating to a number and check if it is a valid number
     const parsedRating = Number(rating);
-    if (isNaN(parsedRating)) {
-      console.log('Invalid rating');
+    if (isNaN(parsedRating) || parsedRating<0 || parsedRating>=6 ) {
       return res.status(400).json({
         success: false,
-        message: "Rating must be a valid number"
+        message: "Rating must be a valid number",
       });
     }
 
@@ -53,6 +52,7 @@ const adminController = async (req, res) => {
       data: newProduct,
       message: "Product Saved!"
     });
+
   } catch (error) {
     console.error('Error saving product:', error);
     return res.status(500).json({

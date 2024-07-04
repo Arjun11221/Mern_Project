@@ -11,6 +11,8 @@ import { Provider } from "react-redux";
 import appStore from "./utils/appStore";
 import Cart from "./components/Cart";
 import Admin from "./components/Admin";
+import { Toaster } from "react-hot-toast";
+
 
 const Grocery = lazy(() => import("./components/Grocery"));
 const About = lazy(() => import("./components/About"));
@@ -29,6 +31,7 @@ const AppLayout = () => {
     <Provider store={appStore} >
       <UserContext.Provider value={{ logedIn: name, setName }}>
         <div className="app">
+        <Toaster position="top-center" toastOptions={{ duration: 3000 }} />
           <Header />
           <Outlet />
         </div>

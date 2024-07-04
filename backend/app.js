@@ -17,7 +17,7 @@ app.use(cors(corsOptions));
 
 app.use(express.urlencoded({ extended: false }));
 
-app.use('/images', express.static(path.join(process.cwd(),"public/images")));
+app.use('/images', express.static(path.join(process.cwd(),"public")));
 
 app.use(express.json());
 
